@@ -1,5 +1,5 @@
 const NavItems = () => {
-  return <div>NavItems</div>;
+  return <ul className="md:flex-between flex">NavItems</ul>;
 };
 
 export default NavItems;
