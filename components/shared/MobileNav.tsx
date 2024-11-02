@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import { Separator } from "../ui/separator";
+import NavItems from "./NavItems";
 
 const MobileNav = () => {
   return (
