@@ -52,8 +52,22 @@ export async function POST(req: Request) {
   // For this guide, you simply log the payload to the console
   const { id } = evt.data;
   const eventType = evt.type;
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
-  console.log("Webhook body:", body);
+
+  if (eventType === "user.created") {
+    const { id, email_addresses, image_url, first_name, last_name, username } =
+      evt.data;
+
+    const user = {
+      clerkId: id,
+      email: email_addresses[0].email_address,
+      username: username,
+      firstname: first_name,
+      lastname: last_name,
+      photo: image_url,
+    };
+
+    // const newUser = await createUser(user);
+  }
 
   return new Response("", { status: 200 });
 }
