@@ -1,4 +1,11 @@
-const EventForm = () => {
+"use client";
+
+type EventFormProps = {
+  userId: string;
+  type: "Create" | "Update";
+};
+
+const EventForm = ({ userId, type }: EventFormProps) => {
   return <div>EventForm</div>;
 };
 
