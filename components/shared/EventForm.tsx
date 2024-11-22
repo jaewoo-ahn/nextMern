@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,22 +13,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { eventFormSchema } from "@/lib/validator";
+import * as z from "zod";
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters",
-  }),
-});
-
-const form = useForm<z.infer<typeof formSchema>>({
-  resolver: zodResolver(formSchema),
+const form = useForm<z.infer<typeof eventFormSchema>>({
+  resolver: zodResolver(eventFormSchema),
   defaultValues: {
     username: "",
   },
 });
 
 // 2. Define a submit handler.
-function onSubmit(values: z.infer<typeof formSchema>) {
+function onSubmit(values: z.infer<typeof eventFormSchema>) {
   console.log(values);
 }
 
