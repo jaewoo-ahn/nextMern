@@ -12,6 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { eventFormSchema } from "@/lib/validator";
 import * as z from "zod";
@@ -47,7 +48,6 @@ const EventForm = ({ userId, type }: EventFormProps) => {
             name="title"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Username</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Event title"
@@ -55,7 +55,6 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                     className="input-field"
                   />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -65,14 +64,12 @@ const EventForm = ({ userId, type }: EventFormProps) => {
             name="categoryId"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Username</FormLabel>
                 <FormControl>
                   <Dropdown
                     onChangeHandler={field.onChange}
                     value={field.value}
                   />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -84,15 +81,23 @@ const EventForm = ({ userId, type }: EventFormProps) => {
             name="description"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Username</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Event title"
+                <FormControl className="h-72">
+                  <Textarea
+                    placeholder="Description"
                     {...field}
-                    className="input-field"
+                    className="textarea rounded-2xl"
                   />
                 </FormControl>
-
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="imageUrl"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl className="h-72"></FormControl>
                 <FormMessage />
               </FormItem>
             )}
