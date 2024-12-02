@@ -18,6 +18,8 @@ import { eventFormSchema } from "@/lib/validator";
 import * as z from "zod";
 import { eventDefaultValues } from "@/constants";
 import Dropdown from "./Dropdown";
+import FileUploader from "./FileUploader";
+import { useState } from "react";
 
 type EventFormProps = {
   userId: string;
@@ -25,6 +27,7 @@ type EventFormProps = {
 };
 
 const EventForm = ({ userId, type }: EventFormProps) => {
+  const [files, setFiles] = useState<File[]>([]);
   const initialValues = eventDefaultValues;
 
   const form = useForm<z.infer<typeof eventFormSchema>>({
@@ -97,7 +100,13 @@ const EventForm = ({ userId, type }: EventFormProps) => {
             name="imageUrl"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormControl className="h-72"></FormControl>
+                <FormControl className="h-72">
+                  <FileUploader
+                    onFieldChange={field.onChange}
+                    imageUrl={field.value}
+                    setFiles={setFiles}
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
